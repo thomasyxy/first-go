@@ -1,7 +1,8 @@
 package main
 
 func main() {
-  goIf()
+  // goIf()
+  goSwitch()
 }
 
 func goIf() {
@@ -12,5 +13,18 @@ func goIf() {
     println("-x")
   } else {
     println("0")
+  }
+}
+
+func goSwitch() {
+  x := 100
+
+  switch {
+    case x > 0:
+      println("x")
+    case x < 0:
+      println("-x")
+    default:
+      println("0")
   }
 }
