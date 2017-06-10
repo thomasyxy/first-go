@@ -2,7 +2,8 @@ package main
 
 func main() {
   // goIf()
-  goSwitch()
+  // goSwitch()
+  goFor()
 }
 
 func goIf() {
@@ -26,5 +27,14 @@ func goSwitch() {
       println("-x")
     default:
       println("0")
+  }
+}
+
+func goFor() {
+  for i := 0; i < 5; i++ {
+    println(i)
+  }
+  for i := 4; i > 0; i-- {
+    println(i)
   }
 }
