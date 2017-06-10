@@ -26,7 +26,28 @@ func mapData()  {
   delete(m, "a")
 }
 
+type user struct {
+  name string
+  age byte
+}
+
+type manager struct {
+  user
+  title string
+}
+
+func structData()  {
+  var m manager
+
+  m.name = "Tom"
+  m.age = 29
+  m.title = "CTO"
+
+  fmt.Println(m)
+}
+
 func main()  {
   sliceData()
   mapData()
+  structData()
 }
