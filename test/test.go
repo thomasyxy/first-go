@@ -1,7 +1,17 @@
 package main
 
-func main()  {
-  x, y := 1, 2
-  x, y = y+3, x+2
-  println(x, y)
+import (
+	"fmt"
+)
+
+func main() {
+	defer_call()
+}
+
+func defer_call() {
+	defer func() { fmt.Println("打印前") }()
+	defer func() { fmt.Println("打印中") }()
+	defer func() { fmt.Println("打印后") }()
+
+	panic("触发异常")
 }
