@@ -6,10 +6,16 @@ func mkslice() []int {
   return s
 }
 
-func mkmap()  {
-
+func mkmap() map[string]int {
+  m := make(map[string]int)
+  m["a"] = 1
+  return m
 }
 
 func main()  {
+  m := mkmap()
+  println(m["a"])
 
+  s := mkslice()
+  println(s[0])
 }
