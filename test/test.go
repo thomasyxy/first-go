@@ -1,13 +1,17 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
-  var x int32
-  var s = "hello world!"
-  println(x, s)
-  inner()
+	defer_call()
 }
 
-func inner() {
-  x := 100
-  println(x)
+func defer_call() {
+	defer func() { fmt.Println("打印前") }()
+	defer func() { fmt.Println("打印中") }()
+	defer func() { fmt.Println("打印后") }()
+
+	panic("触发异常")
 }
