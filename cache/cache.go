@@ -21,7 +21,7 @@ func Cache(table string) *CacheTable  {
     mutex.Lock()
     t, ok = cache[table]
     if !ok {
-      t = &CacheTable{
+      t = &CacheTable {
         name: table,
         items: make(map[interface{}]*CacheItem)
       }
