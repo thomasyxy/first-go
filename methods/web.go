@@ -2,22 +2,37 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
+	"time"
 )
 
-type Hello struct{}
+type timeHandler struct {
+	zone *time.Location
+}
 
-func (h Hello) ServeHTTP(
-	w http.ResponseWriter,
-	r *http.Request) {
-	fmt.Fprint(w, "Hello!")
+func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	tm := time.Now().In(th.zone).Format(time.RFC1123)
+	w.Write([]byte("The time is: " + tm))
+}
+
+func newTimeHandler(name string) *timeHandler {
+	return &timeHandler{zone: time.FixedZone(name, 0)}
 }
 
 func main() {
-	var h Hello
-	err := http.ListenAndServe("localhost:4000", h)
+
+	myHandler := newTimeHandler("EST")
+	//Custom http server
+	s := &http.Server{
+		Addr:           ":4000",
+		Handler:        myHandler,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+
+	err := s.ListenAndServe()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Printf("Server failed: ", err.Error())
 	}
 }
