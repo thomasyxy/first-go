@@ -10,7 +10,7 @@ type timeHandler struct {
 	zone *time.Location
 }
 
-func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h Hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	tm := time.Now().In(th.zone).Format(time.RFC1123)
 	w.Write([]byte("The time is: " + tm))
 }
@@ -24,7 +24,7 @@ func main() {
 	myHandler := newTimeHandler("EST")
 	//Custom http server
 	s := &http.Server{
-		Addr:           ":4000",
+		Addr:           ":8080",
 		Handler:        myHandler,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
