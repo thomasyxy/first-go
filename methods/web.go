@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"image"
 	"net/http"
 	"time"
 )
@@ -34,7 +33,4 @@ func main() {
 	if err != nil {
 		fmt.Printf("Server failed: ", err.Error())
 	}
-	m := image.NewRGBA(image.Rect(0, 0, 100, 100))
-	fmt.Println(m.Bounds())
-	fmt.Println(m.At(0, 0).RGBA())
 }
